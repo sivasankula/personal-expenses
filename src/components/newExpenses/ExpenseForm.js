@@ -16,11 +16,15 @@ const ExpenseForm = (props) => {
     }
     const addExpense = (e) => {
         e.preventDefault();
-        props.onSaveAddExpense({title:title,amount:amount,date:date,id:Math.random().toLocaleString()});
+        props.onSaveAddExpense({title:title,amount:amount,date:new Date(date),id:Math.random().toLocaleString()});
         // console.log({title:title,amount:amount,date:date});
         setAmount("");
         setTitle("");
         setDate("");
+        props.onCloseAddNewExpenses();
+    }
+    const cancelAddNew = () => {
+        props.onCloseAddNewExpenses();
     }
     return(
         <form onSubmit={addExpense}>
@@ -35,11 +39,14 @@ const ExpenseForm = (props) => {
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" min="2022-01-01" value={date.toLocaleString()} onChange={dateHandler}  />
+                    <input type="date" min="1998-04-06" value={date.toLocaleString()} onChange={dateHandler}  />
                 </div>
             </div>
             <div className="new-expense__action">
-                <button type="submit">Add Expense</button>
+                <div>
+                    <button type="button" onClick={cancelAddNew}>Cancel</button>
+                    <button type="submit">Add Expense</button>
+                </div>
             </div>
         </form>
     )   
