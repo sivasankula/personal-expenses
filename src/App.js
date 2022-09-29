@@ -1,6 +1,7 @@
 import './App.css';
 
 import Expenses from './components/Expenses';
+import NewExpenses from './components/newExpenses/NewExpenses';
 
 function App() {
   const expenses = [
@@ -9,9 +10,12 @@ function App() {
     {title:'Trip',amount:9865,date: new Date(2022,5,19),id:'e3'},
     {title:'Mobile',amount:1234,date: new Date(2020,6,4),id:'e4'},
   ]
+  const addExpenseHandler = (expenseDate) =>{
+    console.log('in app', expenseDate);
+  }
   return (
     <div>
-      <h1>helloo</h1>
+      <NewExpenses onExpenseRecieved = {addExpenseHandler} />
       <Expenses expenses={expenses}/>
     </div>
   );
